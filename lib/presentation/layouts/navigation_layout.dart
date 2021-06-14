@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_developers_atl/constants.dart';
 import 'package:flutter_developers_atl/presentation/components/logo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -45,7 +46,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
 
   Widget _buildMobileAppBar() {
     return AppBar(
-      title: Logo(),
+      title: Logo(color: PRIMARY,),
       centerTitle: true,
     );
   }
@@ -55,7 +56,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Logo(),
+          Logo(color: PRIMARY,),
           _buildRowNav(),
         ],
       ),
@@ -92,7 +93,13 @@ class _NavigationLayoutState extends State<NavigationLayout> {
     return Drawer(
       child: Column(
         children: [
-          DrawerHeader(child: Text('Menu')),
+          DrawerHeader(
+            padding: EdgeInsets.zero,
+              child: Container(
+                  color: PRIMARY,
+                  child: Center(
+                    child: Logo(color: OFF_WHITE,),
+                  ))),
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),

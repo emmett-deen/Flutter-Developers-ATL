@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_developers_atl/constants.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({Key? key}) : super(key: key);
+  final Color color;
+  const Logo({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      height: 30,
-      color: Colors.red,
+    return SvgPicture.asset(
+      'logos/fdatl_logo.svg',
+      height: kToolbarHeight - 32,
+      color: color,
+      semanticsLabel: 'logo',
     );
   }
 }
