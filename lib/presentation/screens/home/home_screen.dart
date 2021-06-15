@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_developers_atl/constants.dart';
 import 'package:flutter_developers_atl/presentation/layouts/navigation_layout.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -13,11 +14,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return NavigationLayout(
-      child: _buildBody(),
-    );
+        child: ScreenTypeLayout(
+      mobile: _buildMobile(),
+      tablet: _buildMobile(),
+      desktop: _buildDesktop(),
+    ));
   }
 
-  Widget _buildBody() {
+  Widget _buildDesktop() {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -25,6 +29,26 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Expanded(flex: 1, child: _buildWhatIsFDATL()),
+            Expanded(flex: 1, child: _buildNextEvent()),
+          ],
+        ),
+        _buildFeatures()
+      ],
+    );
+  }
+
+  Widget _buildMobile() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildHero(),
+        Row(
+          children: [
+            Expanded(flex: 1, child: _buildWhatIsFDATL()),
+          ],
+        ),
+        Row(
+          children: [
             Expanded(flex: 1, child: _buildNextEvent()),
           ],
         ),
