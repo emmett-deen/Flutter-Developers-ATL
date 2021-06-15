@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Developers ATL',
       theme: ThemeData(
           primarySwatch: PRIMARY_SWATCH,
+          textTheme: TextTheme().apply(bodyColor: DARK, displayColor: DARK),
           textButtonTheme: TextButtonThemeData(
               style: ButtonStyle(
                   textStyle: MaterialStateProperty.all(
