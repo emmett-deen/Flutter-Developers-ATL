@@ -17,8 +17,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildBody() {
-    return Center(
-      child: Text('Home'),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [_buildHero(),],
+    );
+  }
+
+  Widget _buildHero() {
+    return AspectRatio(
+      aspectRatio: 2.5,
+      child: Container(
+        decoration: BoxDecoration(
+            image:
+                DecorationImage(image: AssetImage('assets/images/hero.png'), fit: BoxFit.cover)),
+      ),
     );
   }
 }
