@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_developers_atl/constants.dart';
+import 'package:flutter_developers_atl/presentation/components/footer.dart';
 import 'package:flutter_developers_atl/presentation/components/logo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class NavigationLayout extends StatefulWidget {
-  final Widget? child;
+  final Widget child;
 
-  NavigationLayout({Key? key, this.child}) : super(key: key);
+  NavigationLayout({Key? key, required this.child}) : super(key: key);
 
   @override
   _NavigationLayoutState createState() => _NavigationLayoutState();
@@ -28,7 +29,12 @@ class _NavigationLayoutState extends State<NavigationLayout> {
 
     return Scaffold(
       appBar: _buildAppBar(),
-      body: widget.child,
+      body: ListView(
+        children: [
+          widget.child,
+          Footer()
+        ],
+      ),
       drawer: deviceType != DeviceScreenType.desktop ? _buildDrawer() : null,
     );
   }
