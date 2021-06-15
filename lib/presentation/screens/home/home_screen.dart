@@ -22,9 +22,46 @@ class _HomeScreenState extends State<HomeScreen> {
       mainAxisSize: MainAxisSize.min,
       children: [
         _buildHero(),
-        _buildWhatIsFDATL(),
-        _buildNextEvent(),
+        Row(
+          children: [
+            Expanded(flex: 1, child: _buildWhatIsFDATL()),
+            Expanded(flex: 1, child: _buildNextEvent()),
+          ],
+        ),
+        _buildFeatures()
       ],
+    );
+  }
+
+  Widget _buildFeatures() {
+    return Container(
+      height: 400,
+      width: MediaQuery.of(context).size.width,
+      color: ACCENT,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Card(
+            child: Container(
+              width: 350,
+              height: 350,
+            ),
+          ),
+          Card(
+            child: Container(
+              width: 350,
+              height: 350,
+            ),
+          ),
+          Card(
+            child: Container(
+              width: 350,
+              height: 350,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -43,38 +80,96 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildNextEvent() {
     return Container(
       color: GREY,
-      height: 150,
+      height: 500,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Our Next Meetup',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      ?.copyWith(color: OFF_WHITE),
+                ),
+              ),
+              Container(
+                constraints: BoxConstraints(minWidth: 150, maxWidth: 450),
+                child: Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          title: Text(
+                              'Exploring Flutter and Why You Should Use It'),
+                          subtitle: Text('JUL 15th, 2021 at 7:00 PM'),
+                        ),
+                        Divider(
+                          thickness: 1,
+                          color: GREY,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              'In our inaugural meeting, we will be doing a broad overview of Flutter, it\'s capabilities/limitations, and special considerations. We will also watch a presentation of Flutter in action!'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 
   Widget _buildWhatIsFDATL() {
-    return Padding(
-      padding: const EdgeInsets.all(32.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: FlutterLogo(size: 32,),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      height: 500,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'What is Flutter Developers ATL?',
-                style: Theme.of(context).textTheme.headline5,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: FlutterLogo(
+                  size: 32,
+                ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'What is Flutter Developers ATL?',
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  constraints: BoxConstraints(minWidth: 150, maxWidth: 450),
+                  child: Text(
+                    'FDATL is a monthly meetup for all things Flutter. While FDATL is welcoming to beginners we also cover advanced topics for more experienced Flutter developers. Make sure to check out our next event to learn something new and meet other like-minded Flutter developers. We can\'t wait to see you there!',
+                    style: Theme.of(context).textTheme.headline6,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-                constraints: BoxConstraints(minWidth: 150, maxWidth: 450),
-                child: Text(
-                    'FDATL is a monthly meetup for all things Flutter. While FDATL is welcoming to beginners we also cover advanced topics for more experienced Flutter developers. Make sure to check out our next event to learn something new and meet other like-minded Flutter developers. We can\'t wait to see you there!',
-                    style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.center,),),
-          )
-        ],
+        ),
       ),
     );
   }
