@@ -20,13 +20,17 @@ class MyApp extends StatelessWidget {
               style: ButtonStyle(
                   textStyle: MaterialStateProperty.all(
                       TextStyle(fontWeight: FontWeight.bold)))),
-          appBarTheme: AppBarTheme(backgroundColor: OFF_WHITE, foregroundColor: PRIMARY, iconTheme: IconThemeData(color: PRIMARY))),
+          appBarTheme: AppBarTheme(
+              backgroundColor: OFF_WHITE,
+              foregroundColor: PRIMARY,
+              iconTheme: IconThemeData(color: PRIMARY))),
       onGenerateRoute: (settings) {
         for (var route in ROUTES) {
           if (route.matches(settings)) {
             return route.build(settings);
           }
         }
+        return ROUTES.first.build(RouteSettings(name: '/'));
       },
     );
   }
