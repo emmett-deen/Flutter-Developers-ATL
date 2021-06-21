@@ -28,6 +28,7 @@ dependencies:
   equatable: ^2.0.2
   flutter_bloc: ^7.0.1
   flutter_svg: ^0.22.0
+  font_awesome_flutter: ^9.1.0
   logger: ^1.0.0
   pedantic: ^1.11.0
   responsive_builder: ^0.4.1
