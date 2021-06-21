@@ -13,7 +13,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      'logos/fdatl_logo.svg',
+      'assets/logos/fdatl_logo.svg',
       height: height,
       color: color,
       semanticsLabel: 'logo',
