@@ -127,24 +127,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListTile(
-                          title: Text(
-                              'Exploring Flutter and Why You Should Use It'),
-                          subtitle: Text('JUL 15th, 2021 at 7:00 PM'),
-                        ),
-                        Divider(
-                          thickness: 1,
-                          color: GREY,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'In our inaugural meeting, we will be doing a broad overview of Flutter, it\'s capabilities/limitations, and special considerations. We will also watch a presentation of Flutter in action!'),
-                        )
-                      ],
+                    child: FutureBuilder<Object>(
+                      future: null,
+                      builder: (context, snapshot) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ListTile(
+                              title: Text(
+                                  'Exploring Flutter and Why You Should Use It'),
+                              subtitle: Text('JUL 15th, 2021 at 7:00 PM'),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              color: GREY,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                  'In our inaugural meeting, we will be doing a broad overview of Flutter, it\'s capabilities/limitations, and special considerations. We will also watch a presentation of Flutter in action!'),
+                            )
+                          ],
+                        );
+                      }
                     ),
                   ),
                 ),
