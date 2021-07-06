@@ -1,6 +1,11 @@
+import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
 import 'package:flutter_developers_atl/constants.dart';
+import 'package:flutter_developers_atl/domain/errors/failure.dart';
+import 'package:flutter_developers_atl/domain/models/meetup_event.dart';
+import 'package:flutter_developers_atl/domain/services/meetup_service.dart';
 import 'package:flutter_developers_atl/presentation/layouts/navigation_layout.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -127,30 +132,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: FutureBuilder<Object>(
-                      future: null,
-                      builder: (context, snapshot) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            ListTile(
-                              title: Text(
-                                  'Exploring Flutter and Why You Should Use It'),
-                              subtitle: Text('JUL 15th, 2021 at 7:00 PM'),
-                            ),
-                            Divider(
-                              thickness: 1,
-                              color: GREY,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                  'In our inaugural meeting, we will be doing a broad overview of Flutter, it\'s capabilities/limitations, and special considerations. We will also watch a presentation of Flutter in action!'),
-                            )
-                          ],
-                        );
-                      }
-                    ),
+                    child: FutureBuilder<dartz.Either<Failure, MeetupEvent>>(
+                        future: MeetupService().nextEvent(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var data = snapshot.data!.fold((l) => l, (r) => r);
+                            if (data is MeetupEvent) {
+                              return HtmlWidget(data.htmlData);
+                            } else {
+                              return Center(
+                                child: Icon(Icons.error),
+                              );
+                            }
+                          } else {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        }),
                   ),
                 ),
               )
