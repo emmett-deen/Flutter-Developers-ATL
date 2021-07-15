@@ -1,11 +1,7 @@
-import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
 import 'package:flutter_developers_atl/constants.dart';
-import 'package:flutter_developers_atl/domain/errors/failure.dart';
-import 'package:flutter_developers_atl/domain/models/meetup_event.dart';
-import 'package:flutter_developers_atl/domain/services/meetup_service.dart';
+import 'package:flutter_developers_atl/presentation/components/meetup_card.dart';
 import 'package:flutter_developers_atl/presentation/layouts/navigation_layout.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(flex: 1, child: _buildNextEvent()),
           ],
         ),
-        _buildFeatures()
+        // _buildFeatures()
       ],
     );
   }
@@ -57,42 +53,42 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(flex: 1, child: _buildNextEvent()),
           ],
         ),
-        _buildFeatures()
+        // _buildFeatures()
       ],
     );
   }
 
-  Widget _buildFeatures() {
-    return Container(
-      height: 400,
-      width: MediaQuery.of(context).size.width,
-      color: ACCENT,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Card(
-            child: Container(
-              width: 350,
-              height: 350,
-            ),
-          ),
-          Card(
-            child: Container(
-              width: 350,
-              height: 350,
-            ),
-          ),
-          Card(
-            child: Container(
-              width: 350,
-              height: 350,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildFeatures() {
+  //   return Container(
+  //     height: 400,
+  //     width: MediaQuery.of(context).size.width,
+  //     color: ACCENT,
+  //     child: Row(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //       children: [
+  //         Card(
+  //           child: Container(
+  //             width: 350,
+  //             height: 350,
+  //           ),
+  //         ),
+  //         Card(
+  //           child: Container(
+  //             width: 350,
+  //             height: 350,
+  //           ),
+  //         ),
+  //         Card(
+  //           child: Container(
+  //             width: 350,
+  //             height: 350,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildHero() {
     return AspectRatio(
@@ -128,30 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Container(
                 constraints: BoxConstraints(minWidth: 150, maxWidth: 450),
-                child: Card(
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FutureBuilder<dartz.Either<Failure, MeetupEvent>>(
-                        future: MeetupService().nextEvent(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var data = snapshot.data!.fold((l) => l, (r) => r);
-                            if (data is MeetupEvent) {
-                              return HtmlWidget(data.htmlData);
-                            } else {
-                              return Center(
-                                child: Icon(Icons.error),
-                              );
-                            }
-                          } else {
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        }),
-                  ),
-                ),
+                child: MeetupCard()
               )
             ],
           ),
@@ -178,9 +151,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'What is Flutter Developers ATL?',
-                    style: Theme.of(context).textTheme.headline5,
+                  Expanded(
+                    child: Text(
+                      'What is Flutter Developers ATL?',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
                   ),
                 ],
               ),
