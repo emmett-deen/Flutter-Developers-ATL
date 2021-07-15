@@ -19,6 +19,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
     // _NavigationItem(title: 'Events', route: '/events'),
     // _NavigationItem(title: 'Resources', route: '/resources'),
     _NavigationItem(title: 'Source Code', route: '/source-code'),
+    _NavigationItem(title: 'Feedback', route: '/feedback'),
     // _NavigationItem(title: 'Jobs', route: '/jobs'),
   ];
 
@@ -131,6 +132,8 @@ class _NavigationLayoutState extends State<NavigationLayout> {
   void _handleNavItem(_NavigationItem item) {
     if (item.route == '/source-code') {
       launch('https://github.com/emmett-deen/Flutter-Developers-ATL');
+    }else if(item.route == '/feedback'){
+      launch('https://forms.gle/d5eAkA7E1mgTquZGA');
     } else {
       Navigator.of(context).pushNamed(item.route);
     }
