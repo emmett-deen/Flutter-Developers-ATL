@@ -3,6 +3,7 @@ import 'package:flutter_developers_atl/constants.dart';
 import 'package:flutter_developers_atl/presentation/components/footer.dart';
 import 'package:flutter_developers_atl/presentation/components/logo.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationLayout extends StatefulWidget {
   final Widget child;
@@ -15,10 +16,11 @@ class NavigationLayout extends StatefulWidget {
 
 class _NavigationLayoutState extends State<NavigationLayout> {
   final List<_NavigationItem> navItems = [
-    _NavigationItem(title: 'Events', route: '/events'),
-    _NavigationItem(title: 'Resources', route: '/resources'),
+    // _NavigationItem(title: 'Events', route: '/events'),
+    // _NavigationItem(title: 'Resources', route: '/resources'),
     _NavigationItem(title: 'Source Code', route: '/source-code'),
-    _NavigationItem(title: 'Jobs', route: '/jobs'),
+    _NavigationItem(title: 'Feedback', route: '/feedback'),
+    // _NavigationItem(title: 'Jobs', route: '/jobs'),
   ];
 
   @override
@@ -30,10 +32,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
     return Scaffold(
       appBar: _buildAppBar(),
       body: ListView(
-        children: [
-          widget.child,
-          Footer()
-        ],
+        children: [widget.child, Footer()],
       ),
       drawer: deviceType != DeviceScreenType.desktop ? _buildDrawer() : null,
     );
@@ -52,7 +51,9 @@ class _NavigationLayoutState extends State<NavigationLayout> {
 
   Widget _buildMobileAppBar() {
     return AppBar(
-      title: Logo(color: PRIMARY,),
+      title: Logo(
+        color: PRIMARY,
+      ),
       centerTitle: true,
     );
   }
@@ -62,7 +63,9 @@ class _NavigationLayoutState extends State<NavigationLayout> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Logo(color: PRIMARY,),
+          Logo(
+            color: PRIMARY,
+          ),
           _buildRowNav(),
         ],
       ),
@@ -82,7 +85,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
           return Container(
             child: TextButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(navItems[index].route);
+                _handleNavItem(navItems[index]);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -100,11 +103,13 @@ class _NavigationLayoutState extends State<NavigationLayout> {
       child: Column(
         children: [
           DrawerHeader(
-            padding: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
               child: Container(
                   color: PRIMARY,
                   child: Center(
-                    child: Logo(color: OFF_WHITE,),
+                    child: Logo(
+                      color: OFF_WHITE,
+                    ),
                   ))),
           ListView.builder(
             shrinkWrap: true,
@@ -114,7 +119,7 @@ class _NavigationLayoutState extends State<NavigationLayout> {
               return ListTile(
                 title: Text(navItems[index].title),
                 onTap: () {
-                  Navigator.of(context).pushNamed(navItems[index].route);
+                  _handleNavItem(navItems[index]);
                 },
               );
             },
@@ -122,6 +127,16 @@ class _NavigationLayoutState extends State<NavigationLayout> {
         ],
       ),
     );
+  }
+
+  void _handleNavItem(_NavigationItem item) {
+    if (item.route == '/source-code') {
+      launch('https://github.com/emmett-deen/Flutter-Developers-ATL');
+    }else if(item.route == '/feedback'){
+      launch('https://forms.gle/d5eAkA7E1mgTquZGA');
+    } else {
+      Navigator.of(context).pushNamed(item.route);
+    }
   }
 }
 
