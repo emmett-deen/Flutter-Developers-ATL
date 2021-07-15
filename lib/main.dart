@@ -3,7 +3,7 @@ import 'package:flutter_developers_atl/constants.dart';
 import 'package:flutter_developers_atl/presentation/routes/routes.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-void main() {
+Future<void> main() async {
   setPathUrlStrategy();
   runApp(MyApp());
 }

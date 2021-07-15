@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_developers_atl/constants.dart';
+import 'package:flutter_developers_atl/presentation/components/meetup_card.dart';
 import 'package:flutter_developers_atl/presentation/layouts/navigation_layout.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(flex: 1, child: _buildNextEvent()),
           ],
         ),
-        _buildFeatures()
+        // _buildFeatures()
       ],
     );
   }
@@ -52,42 +53,42 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(flex: 1, child: _buildNextEvent()),
           ],
         ),
-        _buildFeatures()
+        // _buildFeatures()
       ],
     );
   }
 
-  Widget _buildFeatures() {
-    return Container(
-      height: 400,
-      width: MediaQuery.of(context).size.width,
-      color: ACCENT,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Card(
-            child: Container(
-              width: 350,
-              height: 350,
-            ),
-          ),
-          Card(
-            child: Container(
-              width: 350,
-              height: 350,
-            ),
-          ),
-          Card(
-            child: Container(
-              width: 350,
-              height: 350,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildFeatures() {
+  //   return Container(
+  //     height: 400,
+  //     width: MediaQuery.of(context).size.width,
+  //     color: ACCENT,
+  //     child: Row(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //       children: [
+  //         Card(
+  //           child: Container(
+  //             width: 350,
+  //             height: 350,
+  //           ),
+  //         ),
+  //         Card(
+  //           child: Container(
+  //             width: 350,
+  //             height: 350,
+  //           ),
+  //         ),
+  //         Card(
+  //           child: Container(
+  //             width: 350,
+  //             height: 350,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildHero() {
     return AspectRatio(
@@ -123,31 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Container(
                 constraints: BoxConstraints(minWidth: 150, maxWidth: 450),
-                child: Card(
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ListTile(
-                          title: Text(
-                              'Exploring Flutter and Why You Should Use It'),
-                          subtitle: Text('JUL 15th, 2021 at 7:00 PM'),
-                        ),
-                        Divider(
-                          thickness: 1,
-                          color: GREY,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              'In our inaugural meeting, we will be doing a broad overview of Flutter, it\'s capabilities/limitations, and special considerations. We will also watch a presentation of Flutter in action!'),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                child: MeetupCard()
               )
             ],
           ),
@@ -174,9 +151,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'What is Flutter Developers ATL?',
-                    style: Theme.of(context).textTheme.headline5,
+                  Expanded(
+                    child: Text(
+                      'What is Flutter Developers ATL?',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
                   ),
                 ],
               ),
