@@ -79,7 +79,7 @@ class _MeetupCardState extends State<MeetupCard> {
                       children: [
                         TextButton(
                             onPressed: () {
-                              launch(data.link);
+                              launchUrl(Uri.parse(data.link));
                             },
                             child: Text('View on MeetUp')),
                       ],

@@ -45,7 +45,7 @@ class _UnderConstructionScreenState extends State<UnderConstructionScreen> {
               icon: FaIcon(FontAwesomeIcons.github),
               label: Text('Contribute on GitHub'),
               onPressed: () {
-                launch('https://github.com/emmett-deen/Flutter-Developers-ATL');
+                launchUrl(Uri.parse('https://github.com/emmett-deen/Flutter-Developers-ATL'));
               },
             ),
           )
