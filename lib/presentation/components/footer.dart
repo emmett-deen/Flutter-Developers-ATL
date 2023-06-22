@@ -38,7 +38,7 @@ class Footer extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 12.0),
                   child: InkWell(
                     onTap: () {
-                      launch('https://www.blackairplane.com');
+                      launchUrl(Uri.parse('emmett@blackairplane.com'));
                     },
                     child: Image.asset('assets/logos/ba-logo.png'),
                   ),

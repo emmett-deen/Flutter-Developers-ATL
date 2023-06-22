@@ -15,14 +15,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return NavigationLayout(
-        child: ScreenTypeLayout(
-      mobile: _buildMobile(),
-      tablet: _buildMobile(),
-      desktop: _buildDesktop(),
+        child: ScreenTypeLayout.builder(
+      mobile: _buildMobile,
+      tablet: _buildMobile,
+      desktop: _buildDesktop,
     ));
   }
 
-  Widget _buildDesktop() {
+  Widget _buildDesktop(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildMobile() {
+  Widget _buildMobile(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Our Next Meetup',
                   style: Theme.of(context)
                       .textTheme
-                      .headline5
+                      .headlineSmall
                       ?.copyWith(color: OFF_WHITE),
                 ),
               ),
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'What is Flutter Developers ATL?',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                 ],
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   constraints: BoxConstraints(minWidth: 150, maxWidth: 450),
                   child: Text(
                     'FDATL is a monthly meetup for all things Flutter. While FDATL is welcoming to beginners we also cover advanced topics for more experienced Flutter developers. Make sure to check out our next event to learn something new and meet other like-minded Flutter developers. We can\'t wait to see you there!',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),
